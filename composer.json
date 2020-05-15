@@ -1,0 +1,25 @@
+{
+    "name": "tiime-software/technical-debt-tracker",
+    "description": "Tiime software's technical debt tracker",
+    "type": "library",
+    "require": {
+        "php": "^7.2",
+        "ext-json": "*",
+        "ext-tokenizer": "*",
+        "haydenpierce/class-finder": "^0.4.2",
+        "doctrine/annotations": "^1.10",
+        "doctrine/lexer": "^1.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lucas GERARD",
+            "email": "lucas.gerard.web@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Tiime\\TechnicalDebtTracker\\": "src/"
+        }
+    }
+}

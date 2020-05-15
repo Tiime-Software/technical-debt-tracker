@@ -1,0 +1,12 @@
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+array_shift($argv);
+
+$tracker = new \Tiime\TechnicalDebtTracker\Tracker(
+    new \Tiime\TechnicalDebtTracker\TrackerConfig($argv),
+    new \Doctrine\Common\Annotations\AnnotationReader()
+);
+
+echo $tracker->getTechnicalDebtScore() . PHP_EOL;
