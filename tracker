@@ -1,7 +1,7 @@
 <?php
 
-$autoloadFile = getcwd() . '/vendor/autoload.php';
-$configFile = getcwd() . '/technical_debt_tracker.php';
+$autoloadFile = __DIR__ . '/../../autoload.php';
+$configFile = __DIR__ . '/../../../technical_debt_tracker.php';
 
 if (false === is_file($autoloadFile)) {
     exit('Could not load autoload file.' . PHP_EOL);
