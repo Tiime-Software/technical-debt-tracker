@@ -2,30 +2,32 @@
 
 namespace Tiime\TechnicalDebtTracker\Tests;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use PHPUnit\Framework\TestCase;
-use Tiime\TechnicalDebtTracker\Tracker;
-use Tiime\TechnicalDebtTracker\TrackerConfig;
+use Tiime\TechnicalDebtTracker\TrackerFactory;
 
 class TrackerTest extends TestCase
 {
     /** @test */
     public function trackingCanBeDoneOnClasses()
     {
-        $tracker = new Tracker(new TrackerConfig(['Tiime\\TechnicalDebtTracker\\Tests\\Resources\\TrackingCanBeDoneOnClasses']), new AnnotationReader());
+        $tracker = TrackerFactory::create('Tiime\\TechnicalDebtTracker\\Tests\\Resources\\TrackingCanBeDoneOnClasses');
 
         $this->assertEquals(7, $tracker->getTechnicalDebtScore());
     }
 
-    /** test */
+    /** @test */
     public function trackingCanBeDoneOnProperties()
     {
+        $tracker = TrackerFactory::create('Tiime\\TechnicalDebtTracker\\Tests\\Resources\\TrackingCanBeDoneOnProperties');
 
+        $this->assertEquals(12, $tracker->getTechnicalDebtScore());
     }
 
-    /** test */
+    /** @test */
     public function trackingCanBeDoneOnMethods()
     {
+        $tracker = TrackerFactory::create('Tiime\\TechnicalDebtTracker\\Tests\\Resources\\TrackingCanBeDoneOnMethods');
 
+        $this->assertEquals(16, $tracker->getTechnicalDebtScore());
     }
 }
