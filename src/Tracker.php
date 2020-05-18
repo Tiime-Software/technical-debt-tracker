@@ -18,6 +18,7 @@ final class Tracker
     {
         $this->config = $config;
         $this->reader = $reader;
+        AnnotationReader::addGlobalIgnoredName('required');
     }
 
     /**
