@@ -8,7 +8,7 @@ if (false === is_file($autoloadFile)) {
 }
 
 if (false === is_file($configFile)) {
-    exit('Could not load config file.' . PHP_EOL);
+    $namespaces = [];
 }
 
 require_once $autoloadFile;
