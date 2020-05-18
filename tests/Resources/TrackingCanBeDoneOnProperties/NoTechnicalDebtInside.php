@@ -4,5 +4,9 @@ namespace Tiime\TechnicalDebtTracker\Tests\Resources\TrackingCanBeDoneOnProperti
 
 class NoTechnicalDebtInside
 {
+    public $propertyA;
 
+    protected $propertyB;
+
+    private $propertyC;
 }

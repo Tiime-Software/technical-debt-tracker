@@ -29,4 +29,19 @@ class TechnicalDebtInside
     {
 
     }
+
+    public function methodD()
+    {
+
+    }
+
+    protected function methodE()
+    {
+
+    }
+
+    private function methodF()
+    {
+
+    }
 }
