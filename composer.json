@@ -19,10 +19,14 @@
     ],
     "autoload": {
         "psr-4": {
-            "Tiime\\TechnicalDebtTracker\\": "src/"
+            "Tiime\\TechnicalDebtTracker\\": "src/",
+            "Tiime\\TechnicalDebtTracker\\Tests\\": "tests/"
         }
     },
     "bin": [
         "tracker"
-    ]
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.1"
+    }
 }
