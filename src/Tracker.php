@@ -58,7 +58,9 @@ final class Tracker
             $classAnnotation = $this->reader->getClassAnnotation($class, TechnicalDebt::class);
 
             if ($classAnnotation instanceof TechnicalDebt) {
-                ++$score;
+                foreach ($classAnnotation->categories as $category) {
+                    $score += $this->getCategoryRanking($category);
+                }
             }
 
             $methods = $class->getMethods();
@@ -67,7 +69,9 @@ final class Tracker
                 $methodAnnotation = $this->reader->getMethodAnnotation($method, TechnicalDebt::class);
 
                 if ($methodAnnotation instanceof TechnicalDebt) {
-                    ++$score;
+                    foreach ($methodAnnotation->categories as $category) {
+                        $score += $this->getCategoryRanking($category);
+                    }
                 }
             }
 
@@ -77,11 +81,19 @@ final class Tracker
                 $propertyAnnotation = $this->reader->getPropertyAnnotation($property, TechnicalDebt::class);
 
                 if ($propertyAnnotation instanceof TechnicalDebt) {
-                    ++$score;
+                    foreach ($propertyAnnotation->categories as $category) {
+                        $score += $this->getCategoryRanking($category);
+                    }
                 }
             }
         }
 
         return $score;
+    }
+
+    private function getCategoryRanking(string $name): int
+    {
+        /** @todo read value from config */
+        return 5;
     }
 }
