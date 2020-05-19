@@ -1,7 +1,21 @@
 <?php
 
-require_once __DIR__ . '/../../autoload.php';
+$autoloadFile = __DIR__ . '/../../autoload.php';
+$configFile = __DIR__ . '/../../../technical_debt_tracker.php';
 
-array_shift($argv);
+if (false === is_file($autoloadFile)) {
+    exit('Could not load autoload file.' . PHP_EOL);
+}
 
-echo \Tiime\TechnicalDebtTracker\TrackerFactory::create($argv)->getTechnicalDebtScore() . PHP_EOL;
+if (false === is_file($configFile)) {
+    $namespaces = [];
+}
+
+require_once $autoloadFile;
+include_once $configFile;
+
+if (false === isset($namespaces) || false === is_array($namespaces)) {
+    exit('Could not load namespaces from the config file.' . PHP_EOL);
+}
+
+echo \Tiime\TechnicalDebtTracker\TrackerFactory::create(...$namespaces)->getTechnicalDebtScore() . PHP_EOL;
