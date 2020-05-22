@@ -4,7 +4,7 @@ namespace Tiime\TechnicalDebtTracker;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 
-class TrackerFactory
+final class TrackerFactory
 {
     public static function create(string ...$namespace): Tracker
     {

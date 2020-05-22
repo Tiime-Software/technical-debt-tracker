@@ -7,7 +7,7 @@ use Tiime\TechnicalDebtTracker\Annotation\TechnicalDebt;
 class TechnicalDebtInside
 {
     /**
-     * @TechnicalDebt(category=5, reporter="Flavien Rodrigues", description="Lorem ipsum")
+     * @TechnicalDebt(categories={"dummy", "other"}, reporter="Flavien Rodrigues", description="Lorem ipsum")
      */
     public function methodA()
     {
@@ -15,7 +15,7 @@ class TechnicalDebtInside
     }
 
     /**
-     * @TechnicalDebt(category=2, reporter="Flavien Rodrigues", description="Lorem ipsum")
+     * @TechnicalDebt(categories={"dummy", "other"}, reporter="Flavien Rodrigues", description="Lorem ipsum")
      */
     protected function methodB()
     {
@@ -23,7 +23,7 @@ class TechnicalDebtInside
     }
 
     /**
-     * @TechnicalDebt(category=1, reporter="Flavien Rodrigues", description="Lorem ipsum")
+     * @TechnicalDebt(categories={"dummy", "other"}, reporter="Flavien Rodrigues", description="Lorem ipsum")
      */
     private function methodC()
     {

@@ -13,10 +13,10 @@ use Doctrine\Common\Annotations\Annotation\Required;
 final class TechnicalDebt
 {
     /**
-     * @var int
+     * @var string[]
      * @Required
      */
-    public $category;
+    public $categories;
 
     /**
      * @var string
