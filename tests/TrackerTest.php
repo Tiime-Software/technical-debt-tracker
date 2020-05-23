@@ -12,7 +12,7 @@ class TrackerTest extends TestCase
     {
         $tracker = TrackerFactory::create('Tiime\\TechnicalDebtTracker\\Tests\\Resources\\TrackingCanBeDoneOnClasses');
 
-        $this->assertEquals(7, $tracker->getTechnicalDebtScore());
+        $this->assertEquals(50, $tracker->getTechnicalDebtScore());
     }
 
     /** @test */
@@ -20,7 +20,7 @@ class TrackerTest extends TestCase
     {
         $tracker = TrackerFactory::create('Tiime\\TechnicalDebtTracker\\Tests\\Resources\\TrackingCanBeDoneOnProperties');
 
-        $this->assertEquals(12, $tracker->getTechnicalDebtScore());
+        $this->assertEquals(150, $tracker->getTechnicalDebtScore());
     }
 
     /** @test */
@@ -28,6 +28,6 @@ class TrackerTest extends TestCase
     {
         $tracker = TrackerFactory::create('Tiime\\TechnicalDebtTracker\\Tests\\Resources\\TrackingCanBeDoneOnMethods');
 
-        $this->assertEquals(16, $tracker->getTechnicalDebtScore());
+        $this->assertEquals(150, $tracker->getTechnicalDebtScore());
     }
 }

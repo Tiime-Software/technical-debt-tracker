@@ -10,10 +10,13 @@ final class TrackerConfig
     /** @var Category[] */
     protected $categories;
 
-    public function __construct(array $namespaces)
+    public function __construct(array $namespaces, array $categories)
     {
         $this->namespaces = $namespaces;
-        $this->categories = [];
+
+        foreach ($categories as $category) {
+            $this->addCategory($category);
+        }
     }
 
     public function getNamespaces(): array
@@ -21,9 +24,13 @@ final class TrackerConfig
         return $this->namespaces;
     }
 
-    public function getCategories(): array
+    public function getCategory(string $name): Category
     {
-        return $this->categories;
+        if (false === isset($this->categories[$name])) {
+            throw new \LogicException("unknown category named '$name'");
+        }
+
+        return $this->categories[$name];
     }
 
     public function addCategory(Category ...$category): self

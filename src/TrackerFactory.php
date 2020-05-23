@@ -6,8 +6,16 @@ use Doctrine\Common\Annotations\AnnotationReader;
 
 final class TrackerFactory
 {
-    public static function create(string ...$namespace): Tracker
+    public static function create($namespace, $category = []): Tracker
     {
-        return new Tracker(new TrackerConfig($namespace), new AnnotationReader());
+        if (true === empty($category)) {
+            $category = [
+                Category::securityIssue(),
+                Category::hardToUnderstand(),
+                Category::criticalPart()
+            ];
+        }
+
+        return new Tracker(new TrackerConfig((array) $namespace, (array) $category), new AnnotationReader());
     }
 }
