@@ -33,3 +33,4 @@ By default, this common categories are provided
 | delayed refactoring            | 50      |
 | lack of documentation          | 10      |
 | lack of alignment to standards | 5       |
+| core feature                   | 50      |
