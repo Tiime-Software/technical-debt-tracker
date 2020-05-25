@@ -1,6 +1,6 @@
 <?php
 
-namespace Tiime\TechnicalDebtTracker\Tests\Resources\TrackingCanBeDoneOnMethods;
+namespace Tiime\TechnicalDebtTracker\Tests\Resources\TrackingCanBeDoneOnProperties;
 
 use Tiime\TechnicalDebtTracker\Annotation\TechnicalDebt;
 use Tiime\TechnicalDebtTracker\Category;
