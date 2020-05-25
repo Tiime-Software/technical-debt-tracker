@@ -34,3 +34,5 @@ By default, this common categories are provided
 | lack of documentation          | 10      | Where code is created without supporting documentation. The work to create documentation represents debt |
 | lack of alignment to standards | 5       | Where industry standard features, frameworks, technologies are ignored. Eventually integration with standards will come, and doing so sooner will cost less |
 | core feature                   | 50      | Add penalty on applications's critical parts |
+
+## 📉 Technical debt monitoring
