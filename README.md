@@ -22,10 +22,14 @@ Then run our script as CI step and record the result into your monitoring tool.
 vendor/bin/technical-debt-tracker
 ```
 
-## 🪜 Ranked categories
-Tightly-coupled components, where functions are not modular, the software is not flexible enough to adapt to changes in business needs.
-Lack of a test suite, which encourages quick and risky band-aid bug fixes.
-Lack of documentation, where code is created without supporting documentation. The work to create documentation represents debt.
-Delayed refactoring – As the requirements for a project evolve, it may become clear that parts of the code have become inefficient or difficult to edit and must be refactored in order to support future requirements. The longer refactoring is delayed, and the more code is added, the bigger the debt.[7]:29
-Lack of alignment to standards, where industry standard features, frameworks, technologies are ignored. Eventually integration with standards will come, and doing so sooner will cost less (similar to 'delayed refactoring').
-Lack of knowledge, when the developer doesn't know how to write elegant code.
+## 💯 Ranked categories
+By default, this common categories are provided
+
+| Category                       | Score   |
+| :----------------------------- | :------ |
+| hard to understand             | 200     |
+| coupled                        | 150     |
+| lack of test                   | 150     |
+| delayed refactoring            | 50      |
+| lack of documentation          | 10      |
+| lack of alignment to standards | 5       |
