@@ -25,12 +25,12 @@ vendor/bin/technical-debt-tracker
 ## 💯 Ranked categories
 By default, this common categories are provided
 
-| Category                       | Score   |
-| :----------------------------- | :------ |
-| hard to understand             | 200     |
-| coupled                        | 150     |
-| lack of test                   | 150     |
-| delayed refactoring            | 50      |
-| lack of documentation          | 10      |
-| lack of alignment to standards | 5       |
-| core feature                   | 50      |
+| Category                       | Score   | Description                                  |
+| :----------------------------- | :------ | :------------------------------------------- |
+| hard to understand             | 200     |                                              |
+| coupled                        | 150     |                                              |
+| lack of test                   | 150     |                                              |
+| delayed refactoring            | 50      |                                              |
+| lack of documentation          | 10      |                                              |
+| lack of alignment to standards | 5       |                                              |
+| core feature                   | 50      | Add penalty on applications's critical parts |
