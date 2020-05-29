@@ -14,7 +14,7 @@ class TrackerConfigTest extends TestCase
      */
     public function inProgress()
     {
-        $config = new TrackerConfig([]);
+        $config = new TrackerConfig([], []);
 
         $config->addCategory(new Category('security', 500));
         $config->addCategory(new Category('standard violation', 50));

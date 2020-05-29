@@ -55,45 +55,32 @@ final class Tracker
 
         foreach ($this->getFqcns() as $fqcn) {
             $class = new \ReflectionClass($fqcn);
-            $classAnnotation = $this->reader->getClassAnnotation($class, TechnicalDebt::class);
 
-            if ($classAnnotation instanceof TechnicalDebt) {
-                foreach ($classAnnotation->categories as $category) {
-                    $score += $this->getCategoryScore($category);
-                }
-            }
+            $score += $this->computeScoreFrom($this->reader->getClassAnnotation($class, TechnicalDebt::class));
 
             $methods = $class->getMethods();
-
             foreach ($methods as $method) {
-                $methodAnnotation = $this->reader->getMethodAnnotation($method, TechnicalDebt::class);
-
-                if ($methodAnnotation instanceof TechnicalDebt) {
-                    foreach ($methodAnnotation->categories as $category) {
-                        $score += $this->getCategoryScore($category);
-                    }
-                }
+                $score += $this->computeScoreFrom($this->reader->getMethodAnnotation($method, TechnicalDebt::class));
             }
 
             $properties = $class->getProperties();
-
             foreach ($properties as $property) {
-                $propertyAnnotation = $this->reader->getPropertyAnnotation($property, TechnicalDebt::class);
-
-                if ($propertyAnnotation instanceof TechnicalDebt) {
-                    foreach ($propertyAnnotation->categories as $category) {
-                        $score += $this->getCategoryScore($category);
-                    }
-                }
+                $score += $this->computeScoreFrom($this->reader->getPropertyAnnotation($property, TechnicalDebt::class));
             }
         }
 
         return $score;
     }
 
-    private function getCategoryScore(string $name): int
+    private function computeScoreFrom($annotation): int
     {
-        /** @todo read value from config */
-        return 5;
+        $score = 0;
+        if ($annotation instanceof TechnicalDebt) {
+            foreach ($annotation->categories as $categoryName) {
+                $score += $this->config->getCategory($categoryName)->getScore();
+            }
+        }
+
+        return $score;
     }
 }

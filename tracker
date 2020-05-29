@@ -7,15 +7,15 @@ if (false === is_file($autoloadFile)) {
     exit('Could not load autoload file.' . PHP_EOL);
 }
 
-if (false === is_file($configFile)) {
-    $namespaces = [];
+$config = [];
+if (true === is_file($configFile)) {
+    [$namespaces, $categories] = include_once $configFile;
 }
 
 require_once $autoloadFile;
-include_once $configFile;
 
 if (false === isset($namespaces) || false === is_array($namespaces)) {
     exit('Could not load namespaces from the config file.' . PHP_EOL);
 }
 
-echo \Tiime\TechnicalDebtTracker\TrackerFactory::create(...$namespaces)->getTechnicalDebtScore() . PHP_EOL;
+echo \Tiime\TechnicalDebtTracker\TrackerFactory::create($namespaces, $categories)->getTechnicalDebtScore() . PHP_EOL;
