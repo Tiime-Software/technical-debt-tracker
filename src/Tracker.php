@@ -18,7 +18,12 @@ final class Tracker
     {
         $this->config = $config;
         $this->reader = $reader;
+
+        // TODO : Should be configurable
         AnnotationReader::addGlobalIgnoredName('required');
+        AnnotationReader::addGlobalIgnoredName('dataProvider');
+        AnnotationReader::addGlobalIgnoredName('test');
+        AnnotationReader::addGlobalIgnoredName('group');
     }
 
     /**
