@@ -1,18 +1,24 @@
 <?php
 
-$autoloadFile = __DIR__ . '/../../autoload.php';
+$arguments = getopt(null, ['autoload-file::']);
+$projectAutoloadFile = __DIR__ . '/../../autoload.php';
 $configFile = __DIR__ . '/../../../technical_debt_tracker.php';
 
-if (false === is_file($autoloadFile)) {
+if (array_key_exists('autoload-file', $arguments) && is_file($arguments['autoload-file'])) {
+    require_once $arguments['autoload-file'];
+}
+
+if (false === is_file($projectAutoloadFile)) {
     exit('Could not load autoload file.' . PHP_EOL);
 }
 
+require_once $projectAutoloadFile;
+
+
 $config = [];
 if (true === is_file($configFile)) {
-    [$namespaces, $categories] = include_once $configFile;
+    ['namespaces' => $namespaces, 'categories' => $categories] = include_once $configFile;
 }
-
-require_once $autoloadFile;
 
 if (false === isset($namespaces) || false === is_array($namespaces)) {
     exit('Could not load namespaces from the config file.' . PHP_EOL);
