@@ -4,7 +4,7 @@ namespace Tiime\TechnicalDebtTracker;
 
 final class Category
 {
-    const SECURITY_ISSUE = "Hight security issue";
+    const SECURITY_ISSUE = "High security issue";
     const HARD_TO_UNDERSTAND = "I don't understand easily what happens";
     const CRITICAL_PART = "Critical part of the application";
     const BEST_PRACTICE = "Not following best practice";
