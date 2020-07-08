@@ -38,6 +38,7 @@ By default, we provide these common categories
 | wip                            | 5       | Work in progress                             |
 
 ## 📉 Technical debt monitoring
+Our practice is to visualize technical debt over time _(purple line)_. We add a trending line _(grey)_ and define the point where updating the codebase will be impossible _(red line)_. Now it's also possible to define SMART goals _(green line)_. 
 
 <p align="center">
     <img src="./resources/monitoring.png" width="700" alt="technical debt monitoring visualization">
