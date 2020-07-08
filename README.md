@@ -38,3 +38,7 @@ By default, we provide these common categories
 | wip                            | 5       | Work in progress                             |
 
 ## 📉 Technical debt monitoring
+
+<p align="center">
+    <img src="./resources/monitoring.png" width="700" alt="technical debt monitoring visualization">
+</p>
