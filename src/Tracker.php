@@ -61,16 +61,22 @@ final class Tracker
         foreach ($this->getFqcns() as $fqcn) {
             $class = new \ReflectionClass($fqcn);
 
-            $score += $this->computeScoreFrom($this->reader->getClassAnnotation($class, TechnicalDebt::class));
+            foreach ($this->reader->getClassAnnotations($class) as $annotation) {
+                $score += $this->computeScoreFrom($annotation);
+            }
 
             $methods = $class->getMethods();
             foreach ($methods as $method) {
-                $score += $this->computeScoreFrom($this->reader->getMethodAnnotation($method, TechnicalDebt::class));
+                foreach ($this->reader->getMethodAnnotations($method) as $annotation) {
+                    $score += $this->computeScoreFrom($annotation);
+                }
             }
 
             $properties = $class->getProperties();
             foreach ($properties as $property) {
-                $score += $this->computeScoreFrom($this->reader->getPropertyAnnotation($property, TechnicalDebt::class));
+                foreach ($this->reader->getPropertyAnnotations($property) as $annotation) {
+                    $score += $this->computeScoreFrom($annotation);
+                }
             }
         }
 

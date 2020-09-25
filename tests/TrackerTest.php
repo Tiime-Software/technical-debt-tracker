@@ -30,4 +30,12 @@ class TrackerTest extends TestCase
 
         $this->assertEquals(1500, $tracker->getTechnicalDebtScore());
     }
+
+    /** @test */
+    public function multipleTrackingCanBeDoneOnSameTarget()
+    {
+        $tracker = TrackerFactory::create('Tiime\\TechnicalDebtTracker\\Tests\\Resources\\MultipleTrackingCanBeDoneOnSameTarget');
+
+        $this->assertEquals(1215, $tracker->getTechnicalDebtScore());
+    }
 }

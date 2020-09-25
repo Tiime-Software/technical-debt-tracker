@@ -12,7 +12,13 @@ final class TrackerFactory
             $category = [
                 Category::securityIssue(),
                 Category::hardToUnderstand(),
-                Category::coreFeature()
+                Category::coreFeature(),
+                Category::needDocumentation(),
+                Category::delayedRefactoring(),
+                Category::wip(),
+                Category::tightlyCoupled(),
+                Category::needTests(),
+                Category::badPractice()
             ];
         }
 
