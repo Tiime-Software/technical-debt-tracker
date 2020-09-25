@@ -15,6 +15,10 @@
         {
             "name": "Lucas GERARD",
             "email": "lucas.gerard.web@gmail.com"
+        },
+        {
+            "name": "Flavien RODRIGUES",
+            "email": "rodrigues.flavien@gmail.com"
         }
     ],
     "autoload": {
