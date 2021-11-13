@@ -4,6 +4,11 @@ namespace Tiime\TechnicalDebtTracker;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use HaydenPierce\ClassFinder\ClassFinder;
+use PHPStan\PhpDocParser\Lexer\Lexer;
+use PHPStan\PhpDocParser\Parser\ConstExprParser;
+use PHPStan\PhpDocParser\Parser\PhpDocParser;
+use PHPStan\PhpDocParser\Parser\TokenIterator;
+use PHPStan\PhpDocParser\Parser\TypeParser;
 use Tiime\TechnicalDebtTracker\Annotation\TechnicalDebt;
 
 final class Tracker
@@ -26,6 +31,50 @@ final class Tracker
         AnnotationReader::addGlobalIgnoredName('group');
     }
 
+    public function getTechnicalDebtAnnotations(): \Generator
+    {
+        foreach ($this->getFqcns() as $fqcn) {
+            $class = new \ReflectionClass($fqcn);
+
+
+            $lexer = new Lexer();
+            $constExprParser = new ConstExprParser();
+            $phpDocParser = new PhpDocParser(new TypeParser($constExprParser), $constExprParser);
+
+            if (!empty($class->getDocComment())) {
+                $tokens = new TokenIterator($lexer->tokenize($class->getDocComment()));
+                $actualPhpDocNode = $phpDocParser->parse($tokens);
+                
+                if (count($actualPhpDocNode->getTagsByName('@deprecated')) > 0) {
+                    var_dump($actualPhpDocNode);
+                }
+            }
+
+            foreach ($this->reader->getClassAnnotations($class) as $annotation) {
+                yield $annotation;
+            }
+
+            $methods = $class->getMethods();
+            foreach ($methods as $method) {
+                foreach ($this->reader->getMethodAnnotations($method) as $annotation) {
+                    yield $annotation;
+                }
+            }
+
+            $properties = $class->getProperties();
+            foreach ($properties as $property) {
+                foreach ($this->reader->getPropertyAnnotations($property) as $annotation) {
+                    yield $annotation;
+                }
+            }
+        }
+    }
+    
+    public function getConfig(): TrackerConfig
+    {
+        return $this->config;
+    }
+    
     /**
      * @throws \Exception
      */
@@ -49,49 +98,5 @@ final class Tracker
         }
 
         return $fqcns;
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function getTechnicalDebtScore(): int
-    {
-        $score = 0;
-
-        foreach ($this->getFqcns() as $fqcn) {
-            $class = new \ReflectionClass($fqcn);
-
-            foreach ($this->reader->getClassAnnotations($class) as $annotation) {
-                $score += $this->computeScoreFrom($annotation);
-            }
-
-            $methods = $class->getMethods();
-            foreach ($methods as $method) {
-                foreach ($this->reader->getMethodAnnotations($method) as $annotation) {
-                    $score += $this->computeScoreFrom($annotation);
-                }
-            }
-
-            $properties = $class->getProperties();
-            foreach ($properties as $property) {
-                foreach ($this->reader->getPropertyAnnotations($property) as $annotation) {
-                    $score += $this->computeScoreFrom($annotation);
-                }
-            }
-        }
-
-        return $score;
-    }
-
-    private function computeScoreFrom($annotation): int
-    {
-        $score = 0;
-        if ($annotation instanceof TechnicalDebt) {
-            foreach ($annotation->categories as $categoryName) {
-                $score += $this->config->getCategory($categoryName)->getScore();
-            }
-        }
-
-        return $score;
     }
 }

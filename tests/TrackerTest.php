@@ -3,6 +3,7 @@
 namespace Tiime\TechnicalDebtTracker\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Tiime\TechnicalDebtTracker\Command\Score;
 use Tiime\TechnicalDebtTracker\TrackerFactory;
 
 class TrackerTest extends TestCase
@@ -12,7 +13,7 @@ class TrackerTest extends TestCase
     {
         $tracker = TrackerFactory::create('Tiime\\TechnicalDebtTracker\\Tests\\Resources\\TrackingCanBeDoneOnClasses');
 
-        $this->assertEquals(500, $tracker->getTechnicalDebtScore());
+        $this->assertEquals(500, (new Score())->analyzeWith($tracker));
     }
 
     /** @test */
@@ -20,7 +21,7 @@ class TrackerTest extends TestCase
     {
         $tracker = TrackerFactory::create('Tiime\\TechnicalDebtTracker\\Tests\\Resources\\TrackingCanBeDoneOnProperties');
 
-        $this->assertEquals(1500, $tracker->getTechnicalDebtScore());
+        $this->assertEquals(1500, (new Score())->analyzeWith($tracker));
     }
 
     /** @test */
@@ -28,7 +29,7 @@ class TrackerTest extends TestCase
     {
         $tracker = TrackerFactory::create('Tiime\\TechnicalDebtTracker\\Tests\\Resources\\TrackingCanBeDoneOnMethods');
 
-        $this->assertEquals(1500, $tracker->getTechnicalDebtScore());
+        $this->assertEquals(1500, (new Score())->analyzeWith($tracker));
     }
 
     /** @test */
@@ -36,6 +37,6 @@ class TrackerTest extends TestCase
     {
         $tracker = TrackerFactory::create('Tiime\\TechnicalDebtTracker\\Tests\\Resources\\MultipleTrackingCanBeDoneOnSameTarget');
 
-        $this->assertEquals(1215, $tracker->getTechnicalDebtScore());
+        $this->assertEquals(1215, (new Score())->analyzeWith($tracker));
     }
 }

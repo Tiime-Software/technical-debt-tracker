@@ -35,7 +35,6 @@ final class TrackerConfig
 
     public function addCategory(Category ...$category): self
     {
-
         foreach ($category as $addingCategory) {
             if (false === isset($this->categories[$addingCategory->getName()])) {
                 $this->categories[$addingCategory->getName()] = $addingCategory;

@@ -6,6 +6,7 @@ use Tiime\TechnicalDebtTracker\Annotation\TechnicalDebt;
 use Tiime\TechnicalDebtTracker\Category;
 
 /**
+ * @deprecated for testing purpose
  * @TechnicalDebt(categories={Category::SECURITY_ISSUE, Category::CORE_FEATURE}, reporter="Flavien Rodrigues", description="Lorem ipsum")
  * @TechnicalDebt(categories={Category::BAD_PRACTICE, Category::NEED_DOCUMENTATION}, reporter="Flavien Rodrigues", description="Lorem ipsum")
  */
