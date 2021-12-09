@@ -21,6 +21,7 @@ class TechnicalDebtInside
     /**
      * @TechnicalDebt(categories={Category::DELAYED_REFACTORING}, reporter="Flavien Rodrigues", description="Lorem ipsum")
      * @TechnicalDebt(categories={Category::NEED_TESTS}, reporter="Flavien Rodrigues", description="Lorem ipsum")
+     * @TechnicalDebt(reporter="Flavien Rodrigues", description="Lorem ipsum", issue_link="https://...")
      */
     public function methodA()
     {

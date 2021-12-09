@@ -14,7 +14,6 @@ final class TechnicalDebt
 {
     /**
      * @var string[]
-     * @Required
      */
     public $categories;
 
@@ -29,4 +28,9 @@ final class TechnicalDebt
      * @Required
      */
     public $description;
+
+    /**
+     * @var null|string
+     */
+    public $issue_link;
 }
