@@ -30,7 +30,7 @@ final class TechnicalDebt
     public $description;
 
     /**
-     * @var null|string
+     * @var string
      */
     public $issue_link;
 }

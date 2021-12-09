@@ -5,10 +5,8 @@ namespace Tiime\TechnicalDebtTracker;
 use Doctrine\Common\Annotations\AnnotationReader;
 use HaydenPierce\ClassFinder\ClassFinder;
 use PHPStan\PhpDocParser\Lexer\Lexer;
-use PHPStan\PhpDocParser\Parser\ConstExprParser;
 use PHPStan\PhpDocParser\Parser\PhpDocParser;
 use PHPStan\PhpDocParser\Parser\TokenIterator;
-use PHPStan\PhpDocParser\Parser\TypeParser;
 use Tiime\TechnicalDebtTracker\Annotation\TechnicalDebt;
 
 final class Tracker
@@ -18,11 +16,23 @@ final class Tracker
 
     /** @var AnnotationReader */
     private $reader;
+    
+    /** @var Lexer */
+    private $lexer;
+    
+    /** @var PhpDocParser */
+    private $phpDocParser;
 
-    public function __construct(TrackerConfig $config, AnnotationReader $reader)
-    {
+    public function __construct(
+        TrackerConfig $config, 
+        AnnotationReader $reader, 
+        Lexer $lexer,
+        PhpDocParser $phpDocParser
+    ) {
         $this->config = $config;
         $this->reader = $reader;
+        $this->lexer = $lexer;
+        $this->phpDocParser = $phpDocParser;
 
         // TODO : Should be configurable
         AnnotationReader::addGlobalIgnoredName('required');
@@ -36,17 +46,22 @@ final class Tracker
         foreach ($this->getFqcns() as $fqcn) {
             $class = new \ReflectionClass($fqcn);
 
-
-            $lexer = new Lexer();
-            $constExprParser = new ConstExprParser();
-            $phpDocParser = new PhpDocParser(new TypeParser($constExprParser), $constExprParser);
-
             if (!empty($class->getDocComment())) {
-                $tokens = new TokenIterator($lexer->tokenize($class->getDocComment()));
-                $actualPhpDocNode = $phpDocParser->parse($tokens);
+                $actualPhpDocNode = $this->phpDocParser->parse(new TokenIterator($this->lexer->tokenize($class->getDocComment())));
                 
-                if (count($actualPhpDocNode->getTagsByName('@deprecated')) > 0) {
-                    var_dump($actualPhpDocNode);
+                foreach ($actualPhpDocNode->getTagsByName('@deprecated') as $tag) {
+                    $debt = new TechnicalDebt();
+                    $debt->description = $tag->value->description;
+
+                    yield $debt;
+                }
+
+
+                foreach ($actualPhpDocNode->getTagsByName('@todo') as $tag) {
+                    $debt = new TechnicalDebt();
+                    $debt->description = $tag->value->description;
+
+                    yield $debt;
                 }
             }
 

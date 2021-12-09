@@ -22,7 +22,7 @@ class Score
     {
         $score = 0;
         if ($annotation instanceof TechnicalDebt) {
-            foreach ($annotation->categories as $categoryName) {
+            foreach ($annotation->categories ?? [] as $categoryName) {
                 $score += $tracker->getConfig()->getCategory($categoryName)->getScore();
             }
         }
