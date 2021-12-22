@@ -18,13 +18,12 @@ class Score
         return $score;
     }
 
-    private function computeScoreFrom($tracker, $annotation): int
+    private function computeScoreFrom(Tracker $tracker, TechnicalDebt $technicalDebt): int
     {
         $score = 0;
-        if ($annotation instanceof TechnicalDebt) {
-            foreach ($annotation->categories ?? [] as $categoryName) {
-                $score += $tracker->getConfig()->getCategory($categoryName)->getScore();
-            }
+
+        foreach ($technicalDebt->categories as $categoryName) {
+            $score += $tracker->getConfig()->getCategory($categoryName)->getScore();
         }
 
         return $score;

@@ -13,6 +13,7 @@ final class TrackerConfig
     public function __construct(array $namespaces, array $categories)
     {
         $this->namespaces = $namespaces;
+        $this->categories = [];
 
         foreach ($categories as $category) {
             $this->addCategory($category);

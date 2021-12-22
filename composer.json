@@ -33,9 +33,13 @@
         "tracker"
     ],
     "require-dev": {
-        "phpunit/phpunit": "^9.1"
+        "phpunit/phpunit": "^9.1",
+        "vimeo/psalm": "^4.15",
+        "squizlabs/php_codesniffer": "^3.6"
     },
     "scripts": {
+        "code_sniffer": "vendor/bin/phpcs --standard=PSR12 ./src ./tests",
+        "psalm": "vendor/bin/psalm --show-info=true",
         "test": "vendor/bin/phpunit tests"
     }
 }

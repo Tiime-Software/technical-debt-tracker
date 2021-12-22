@@ -4,15 +4,15 @@ namespace Tiime\TechnicalDebtTracker;
 
 final class Category
 {
-    const SECURITY_ISSUE = "security issue";
-    const HARD_TO_UNDERSTAND = "hard to understand";
-    const TIGHTLY_COUPLED = "tightly coupled";
-    const NEED_TESTS =  "need tests";
-    const DELAYED_REFACTORING = 'delayed refactoring';
-    const CORE_FEATURE  = "core feature";
-    const NEED_DOCUMENTATION = 'need documentation';
-    const BAD_PRACTICE = "bad practice";
-    const WIP = "Work in progress";
+    public const SECURITY_ISSUE = "security issue";
+    public const HARD_TO_UNDERSTAND = "hard to understand";
+    public const TIGHTLY_COUPLED = "tightly coupled";
+    public const NEED_TESTS =  "need tests";
+    public const DELAYED_REFACTORING = 'delayed refactoring';
+    public const CORE_FEATURE  = "core feature";
+    public const NEED_DOCUMENTATION = 'need documentation';
+    public const BAD_PRACTICE = "bad practice";
+    public const WIP = "Work in progress";
 
     /** @var string */
     private $name;

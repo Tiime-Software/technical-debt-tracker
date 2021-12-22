@@ -11,8 +11,8 @@ class Report
     public function display(Tracker $tracker): array
     {
         $report = $this->analyzeWith($tracker);
-        
-        
+
+
         $output = new CLImate();
         $output->info('Nothing fancy here. Just some info.');
         $table = [];
@@ -26,10 +26,10 @@ class Report
 
         $c = array_column($table, 'percent');
         array_multisort($c, SORT_DESC, $table);
-        
-        
-        $output->table($table);
 
+
+        $output->table($table);
+        return [];
     }
 
     public function analyzeWith(Tracker $tracker): array
@@ -56,7 +56,7 @@ class Report
                 }
 
                 $totalByCategory[$category]++;
-                $scoreByCategory[$category]+=$tracker->getConfig()->getCategory($category)->getScore();
+                $scoreByCategory[$category] += $tracker->getConfig()->getCategory($category)->getScore();
                 $total++;
             }
         }
