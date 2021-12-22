@@ -34,8 +34,12 @@ final class TechnicalDebt
      */
     public $issue_link;
 
-    public function __construct(array $categories, string $reporter, string $description, ?string $issue_link)
-    {
+    public function __construct(
+        array $categories = [], 
+        string $reporter = '', 
+        string $description = '', 
+        ?string $issue_link = null
+    ) {
         $this->categories = $categories;
         $this->reporter = $reporter;
         $this->description = $description;
