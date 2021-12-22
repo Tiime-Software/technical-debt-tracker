@@ -45,7 +45,6 @@ class AtTracker implements TrackerInterface
 
             if (!empty($class->getDocComment())) {
                 foreach ($this->getTagNodes($class->getDocComment()) as $tag) {
-
                     $debt = new TechnicalDebt();
 
                     switch (true) {
