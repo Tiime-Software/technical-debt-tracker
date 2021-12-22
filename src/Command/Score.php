@@ -27,7 +27,7 @@ class Score
         }
 
         if (empty($technicalDebt->categories ?? [])) {
-            $score += $tracker->getConfig()->
+            $score += $tracker->getConfig()->getDefaultDebtWeight();
         }
 
         return $score;

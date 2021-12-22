@@ -48,4 +48,9 @@ final class TrackerConfig
 
         return $this;
     }
+
+    public function getDefaultDebtWeight(): int
+    {
+        return $this->defaultDebtWeight;
+    }
 }
