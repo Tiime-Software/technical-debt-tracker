@@ -29,7 +29,7 @@ final class TrackerFactory
             ];
         }
 
-        $config = new TrackerConfig((array) $namespace, $category);
+        $config = new TrackerConfig((array) $namespace, $category, Category::delayedRefactoring()->getScore());
 
         $constExprParser = new ConstExprParser();
         $lexer = new Lexer();

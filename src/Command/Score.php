@@ -26,6 +26,10 @@ class Score
             $score += $tracker->getConfig()->getCategory($categoryName)->getScore();
         }
 
+        if (empty($technicalDebt->categories ?? [])) {
+            $score += $tracker->getConfig()->
+        }
+
         return $score;
     }
 }

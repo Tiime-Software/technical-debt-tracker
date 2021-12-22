@@ -10,10 +10,14 @@ final class TrackerConfig
     /** @var Category[] */
     protected $categories;
 
-    public function __construct(array $namespaces, array $categories)
+    /** @var int */
+    protected $defaultDebtWeight;
+
+    public function __construct(array $namespaces, array $categories, int $defaultDebtWeight)
     {
         $this->namespaces = $namespaces;
         $this->categories = [];
+        $this->defaultDebtWeight = $defaultDebtWeight;
 
         foreach ($categories as $category) {
             $this->addCategory($category);
