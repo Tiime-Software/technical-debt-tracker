@@ -1,4 +1,4 @@
-name: unit tests
+name: 🕵️ Quality Assurance
 
 on:
   push:
@@ -27,14 +27,14 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate
 
-    - name: Install dependencies
+    - name: 📥 Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    - name: Run code sniffer
-      run: composer run-script code_sniffer
+    - name: 🧽 Run code sniffer
+      run: vendor/bin/phpcs -q --report=checkstyle --standard=PSR12 ./src ./tests | cs2pr
   
-    - name: Run Psalm
-      run: composer run-script psalm
+    - name: ⛓️ Run Psalm
+      run: vendor/bin/psalm --output-format=checkstyle | cs2pr
 
-    - name: Run test suite
+    - name: 🐛 Run test suite
       run: composer run-script test
