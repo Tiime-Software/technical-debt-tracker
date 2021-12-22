@@ -31,10 +31,10 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: 🧽 Run code sniffer
-      run: vendor/bin/phpcs -q --report=checkstyle --standard=PSR12 ./src ./tests | cs2pr
+      run: vendor/bin/phpcs -q --report=checkstyle --standard=PSR12 ./src ./tests | vendor/bin/cs2pr
   
     - name: ⛓️ Run Psalm
-      run: vendor/bin/psalm --output-format=checkstyle | cs2pr
+      run: vendor/bin/psalm --output-format=checkstyle | vendor/bin/cs2pr
 
     - name: 🐛 Run test suite
       run: composer run-script test
