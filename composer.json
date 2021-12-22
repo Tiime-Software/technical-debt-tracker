@@ -6,6 +6,7 @@
         "php": "^7.2",
         "ext-json": "*",
         "ext-tokenizer": "*",
+        "psr/container": "^1.1.1",
         "haydenpierce/class-finder": "^0.4.2",
         "doctrine/annotations": "^1.10",
         "doctrine/lexer": "^1.2",
