@@ -22,7 +22,7 @@ class Score
     {
         $score = 0;
 
-        foreach ($technicalDebt->categories as $categoryName) {
+        foreach ($technicalDebt->categories ?? [] as $categoryName) {
             $score += $tracker->getConfig()->getCategory($categoryName)->getScore();
         }
 

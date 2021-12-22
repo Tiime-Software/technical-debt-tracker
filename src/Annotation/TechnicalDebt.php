@@ -30,19 +30,7 @@ final class TechnicalDebt
     public $description;
 
     /**
-     * @var string|null
+     * @var string
      */
     public $issue_link;
-
-    public function __construct(
-        array $categories = [],
-        string $reporter = '',
-        string $description = '',
-        ?string $issue_link = null
-    ) {
-        $this->categories = $categories;
-        $this->reporter = $reporter;
-        $this->description = $description;
-        $this->issue_link = $issue_link;
-    }
 }
