@@ -2,7 +2,6 @@
 
 namespace Tiime\TechnicalDebtTracker\Command;
 
-use League\CLImate\CLImate;
 use Tiime\TechnicalDebtTracker\Annotation\TechnicalDebt;
 use Tiime\TechnicalDebtTracker\Tracker;
 
@@ -13,22 +12,21 @@ class Report
         $report = $this->analyzeWith($tracker);
 
 
-        $output = new CLImate();
-        $output->info('Nothing fancy here. Just some info.');
-        $table = [];
-        foreach ($report['_stats'] as $category => $value) {
-            $table[] = [
-                'category' => $category,
-                'percent' => sprintf("%.2f%%", $value['percent']),
-                'score' => $value['score'],
-            ];
-        }
-
-        $c = array_column($table, 'percent');
-        array_multisort($c, SORT_DESC, $table);
-
-
-        $output->table($table);
+//        $output->info('Nothing fancy here. Just some info.');
+//        $table = [];
+//        foreach ($report['_stats'] as $category => $value) {
+//            $table[] = [
+//                'category' => $category,
+//                'percent' => sprintf("%.2f%%", $value['percent']),
+//                'score' => $value['score'],
+//            ];
+//        }
+//
+//        $c = array_column($table, 'percent');
+//        array_multisort($c, SORT_DESC, $table);
+//
+//
+//        $output->table($table);
         return [];
     }
 
