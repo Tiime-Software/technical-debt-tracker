@@ -56,7 +56,8 @@ final class Category
         return new self(self::NEED_TESTS, 150);
     }
 
-    public static function delayedRefactoring(): self{
+    public static function delayedRefactoring(): self
+    {
         return new self(self::DELAYED_REFACTORING, 100);
     }
 
