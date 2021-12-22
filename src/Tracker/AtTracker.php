@@ -45,16 +45,19 @@ class AtTracker implements TrackerInterface
 
             if (!empty($class->getDocComment())) {
                 foreach ($this->getTagNodes($class->getDocComment()) as $tag) {
+
+                    $debt = new TechnicalDebt();
+
                     switch (true) {
                         case $tag->value instanceof GenericTagValueNode:
-                            $description = $tag->value->value;
+                            $debt->description = $tag->value->value;
                             break;
                         case $tag->value instanceof DeprecatedTagValueNode:
-                            $description = $tag->value->description;
+                            $debt->description = $tag->value->description;
                             break;
                     }
 
-                    yield new TechnicalDebt([], '', $description ?? '', null);
+                    yield $debt;
                 }
             }
         }

@@ -45,7 +45,7 @@ class TrackerTest extends TestCase
     public function multipleTrackingCanBeDoneOnSameTarget()
     {
         $this->assertEquals(
-            1215,
+            1515,
             (new Score())->analyzeWith(TrackerFactory::create(
                 'Tiime\\TechnicalDebtTracker\\Tests\\Resources\\MultipleTrackingCanBeDoneOnSameTarget'
             ))
