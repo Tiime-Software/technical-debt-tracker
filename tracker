@@ -26,4 +26,4 @@ if (false === isset($namespaces) || false === is_array($namespaces)) {
 
 $tracker = \Tiime\TechnicalDebtTracker\TrackerFactory::create($namespaces, $categories);
 
-echo (new \Tiime\TechnicalDebtTracker\Command\Score())->execute($tracker) . PHP_EOL;
+echo (new \Tiime\TechnicalDebtTracker\Command\Score())->analyzeWith($tracker) . PHP_EOL;
