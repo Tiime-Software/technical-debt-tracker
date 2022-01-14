@@ -28,20 +28,26 @@ class AnnotationTracker implements TrackerInterface
             $class = new \ReflectionClass($fqcn);
 
             foreach ($this->reader->getClassAnnotations($class) as $annotation) {
-                yield $annotation;
+                if ($annotation instanceof TechnicalDebt) {
+                    yield $annotation;
+                }
             }
 
             $methods = $class->getMethods();
             foreach ($methods as $method) {
                 foreach ($this->reader->getMethodAnnotations($method) as $annotation) {
-                    yield $annotation;
+                    if ($annotation instanceof TechnicalDebt) {
+                        yield $annotation;
+                    }
                 }
             }
 
             $properties = $class->getProperties();
             foreach ($properties as $property) {
                 foreach ($this->reader->getPropertyAnnotations($property) as $annotation) {
-                    yield $annotation;
+                    if ($annotation instanceof TechnicalDebt) {
+                        yield $annotation;
+                    }
                 }
             }
         }
