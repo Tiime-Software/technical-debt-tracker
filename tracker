@@ -24,4 +24,6 @@ if (false === isset($namespaces) || false === is_array($namespaces)) {
     exit('Could not load namespaces from the config file.' . PHP_EOL);
 }
 
-echo \Tiime\TechnicalDebtTracker\TrackerFactory::create($namespaces, $categories)->getTechnicalDebtScore() . PHP_EOL;
+$tracker = \Tiime\TechnicalDebtTracker\TrackerFactory::create($namespaces, $categories);
+
+echo (new \Tiime\TechnicalDebtTracker\Command\Score())->analyzeWith($tracker) . PHP_EOL;

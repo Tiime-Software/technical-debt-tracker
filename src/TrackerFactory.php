@@ -3,10 +3,17 @@
 namespace Tiime\TechnicalDebtTracker;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use PHPStan\PhpDocParser\Lexer\Lexer;
+use PHPStan\PhpDocParser\Parser\ConstExprParser;
+use PHPStan\PhpDocParser\Parser\PhpDocParser;
+use PHPStan\PhpDocParser\Parser\TypeParser;
+use Tiime\TechnicalDebtTracker\Tracker\AnnotationTracker;
+use Tiime\TechnicalDebtTracker\Tracker\AtTracker;
 
 final class TrackerFactory
 {
-    public static function create($namespace, $category = []): Tracker
+    /** @param string|string[] $namespace */
+    public static function create($namespace, array $category = []): Tracker
     {
         if (true === empty($category)) {
             $category = [
@@ -22,6 +29,18 @@ final class TrackerFactory
             ];
         }
 
-        return new Tracker(new TrackerConfig((array) $namespace, (array) $category), new AnnotationReader());
+        $config = new TrackerConfig((array) $namespace, $category, Category::delayedRefactoring()->getScore());
+
+        $constExprParser = new ConstExprParser();
+        $lexer = new Lexer();
+        $phpDocParser = new PhpDocParser(new TypeParser($constExprParser), $constExprParser);
+
+        $classProvider = new ClassProvider($config);
+
+        return new Tracker(
+            $config,
+            new AnnotationTracker($classProvider, new AnnotationReader()),
+            new AtTracker($classProvider, $lexer, $phpDocParser, '@deprecated', '@todo')
+        );
     }
 }

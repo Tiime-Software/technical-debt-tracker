@@ -3,12 +3,13 @@
     "description": "Tiime software's technical debt tracker",
     "type": "library",
     "require": {
-        "php": "^7.2",
+        "php": "^7.4 || ^8.0",
         "ext-json": "*",
         "ext-tokenizer": "*",
         "haydenpierce/class-finder": "^0.4.2",
         "doctrine/annotations": "^1.10",
-        "doctrine/lexer": "^1.2"
+        "doctrine/lexer": "^1.2",
+        "phpstan/phpdoc-parser": "^1.2"
     },
     "license": "MIT",
     "authors": [
@@ -31,9 +32,14 @@
         "tracker"
     ],
     "require-dev": {
-        "phpunit/phpunit": "^9.1"
+        "phpunit/phpunit": "^9.1",
+        "vimeo/psalm": "^4.15",
+        "squizlabs/php_codesniffer": "^3.6",
+        "staabm/annotate-pull-request-from-checkstyle": "^1.7"
     },
     "scripts": {
+        "code_sniffer": "vendor/bin/phpcs --standard=PSR12 ./src ./tests",
+        "psalm": "vendor/bin/psalm --show-info=true",
         "test": "vendor/bin/phpunit tests"
     }
 }

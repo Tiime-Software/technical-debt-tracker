@@ -1,4 +1,4 @@
-name: 🕵️ Tests
+name: 🕵️ Static analysis
 
 on:
   push:
@@ -11,21 +11,22 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        php-versions: [ '7.4', '8.0', '8.1' ]
-
     steps:
     - uses: actions/checkout@v2
 
     - name: Setup PHP with extensions
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-versions }}
         extensions: json, tokenizer
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
 
     - name: 📥 Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    - name: 🐛 Run test suite
-      run: composer run-script test
+    - name: 🧽 Run code sniffer
+      run: vendor/bin/phpcs -q --report=checkstyle --standard=PSR12 ./src ./tests | vendor/bin/cs2pr
+  
+    - name: ⛓️ Run Psalm
+      run: vendor/bin/psalm --output-format=checkstyle | vendor/bin/cs2pr
