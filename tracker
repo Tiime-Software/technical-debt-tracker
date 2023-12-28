@@ -1,6 +1,6 @@
 <?php
 
-$arguments = getopt(null, ['autoload-file::']);
+$arguments = getopt('a', ['autoload-file::']);
 $projectAutoloadFile = __DIR__ . '/../../autoload.php';
 $configFile = __DIR__ . '/../../../technical_debt_tracker.php';
 
