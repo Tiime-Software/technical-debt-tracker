@@ -8,7 +8,7 @@
         "ext-tokenizer": "*",
         "haydenpierce/class-finder": "^0.4.2",
         "doctrine/annotations": "^1.10",
-        "doctrine/lexer": "^1.2",
+        "doctrine/lexer": "^1.2 || ^2",
         "phpstan/phpdoc-parser": "^1.2"
     },
     "license": "MIT",
